@@ -1,7 +1,11 @@
 import logo from '../assets/images/logo.png';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+
+  // function to change the active page link to black back ground.
+  const changeActivePageColor = ({ isActive })=> isActive ? 'nav-active-links' : 'nav-links';
+
   return (
     <nav>
       <div className='nav-layout'>
@@ -12,10 +16,18 @@ const Navbar = () => {
           </p>
         </div>
         
-        <Link className='nav-links bg-black' to='/'>Home</Link>
-        <Link className='nav-links' to='/jobs'>Jobs</Link>
-        <Link className='nav-links' to='/add-job'>Add Job</Link>
-        <Link className='nav-links' to='/contact'>Contact</Link>
+        <NavLink className={(s)=>console.log(s)} to='/'>
+          Home
+        </NavLink>
+        <NavLink className={changeActivePageColor} to='/jobs'>
+          Jobs
+        </NavLink>
+        <NavLink className={changeActivePageColor} to='/add-job'>
+          Add Job
+        </NavLink>
+        <NavLink className={changeActivePageColor} to='/contact'>
+          Contact
+        </NavLink>
       </div>
       
        
