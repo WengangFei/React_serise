@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* add custom style class */
+/* components class, one class name to many styles */
+@layer components {
+    .nav-links{
+        @apply font-bold text-white text-base mt-4 rounded-md w-20 text-center py-1 hover:bg-indigo-500 cursor-pointer;
+    }
+
+    .nav-layout{
+        @apply grid grid-cols-8 gap-4 p-4 bg-indigo-700 border-y-2 
+    }
+}
+
+/* utility class, one class name to one style */
+
+@layer utilities {
+    .fei{
+        text-align: center;
+    }
+
+    .wen{
+        text-indent: 4px;
+    }
+}
