@@ -16,7 +16,7 @@ const Navbar = () => {
           </p>
         </div>
         
-        <NavLink className={(s)=>console.log(s)} to='/'>
+        <NavLink className={changeActivePageColor} to='/'>
           Home
         </NavLink>
         <NavLink className={changeActivePageColor} to='/jobs'>
