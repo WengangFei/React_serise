@@ -25,7 +25,7 @@ const[flag,setFlag] = useState(false);
         <div className='border-t-4 pt-4 text-red-500 mb-4 font-bold'>
             <FaMapMarker className='inline text-md mr-2'/>{ job.location }
             <Link className='bg-indigo-500 rounded-md text-white py-1 px-2 float-right'
-             to={`/job/${job.id}`}>
+             to={`/jobs/${job.id}`}>
                 Read More
             </Link>
         </div>

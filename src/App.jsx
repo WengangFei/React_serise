@@ -12,6 +12,7 @@ import Contact from './pages/contact';
 import BrowseJobs from './pages/browseJobs';
 import PostJobs from './pages/postJobs';
 import Error404Page from './pages/404Page';
+import SingleJobPage from './pages/singleJobPage';
 
 
 
@@ -22,6 +23,8 @@ const router = createBrowserRouter(
       {/* index indicate the home page  */}
       <Route index element={<HomePage />}/>
       <Route path='/jobs' element={<JobsPage />}/>
+      {/* : is indicating the variable follow it is a dynamic variable */}
+      <Route path='/jobs/:id' element={<SingleJobPage />}/>
       <Route path='/add-job' element={ <AddJob />}/>
       <Route path='/contact' element={ <Contact />}/>
       <Route path='/browse-jobs' element={ <BrowseJobs />}/>

@@ -5,7 +5,7 @@ import Spinner from './spinner';
 
 
 
-const JobListing = () => {
+const JobListing = ({ isJobs }) => {
 
     const[data,setData] = useState([]);
     const[isLoading,setIsLoading] = useState(true);
@@ -15,8 +15,8 @@ const JobListing = () => {
     //fetching the data
     useEffect(()=>{
         const resp = async ()=>{
-            try{
-                const receiveData = await fetch('http://localhost:8000/jobs');
+            try{// config proxy in vite config file with api prefix.
+                const receiveData = await fetch('/api/jobs');
                 const rawData = await receiveData.json();
                 setData(rawData);
             }catch(error){
@@ -32,8 +32,8 @@ const JobListing = () => {
                 <Spinner loading={isLoading} />
                 : 
                 <div className='grid grid-cols-3 gap-4'>
-                    {
-                        (!change ? data.slice(0,3) : data.slice(0,6)).map(job=>
+                    {//show different job mount
+                        (!change ? (isJobs ? data.slice(0,6) : data.slice(0,3)) : (isJobs ? data : data.slice(0,6))).map(job=>
                             (
                                 <div key={job.id} className='bg-gray-100 m-8 p-4 rounded-md shadow-lg'>
                                     <SingleJobListing job={ job }/>
@@ -50,7 +50,7 @@ const JobListing = () => {
                         // //pass a function in set due to the state changing depend on the previous state
                         setChange(prev=>!prev);
                     }} className='bg-black text-white mb-4 mx-5 p-2 rounded-md'>
-                        { change ? 'Show Less Jobs' : 'Show More Jobs' }
+                        { change ? 'Show Less Jobs' : (isJobs ? 'Show All Jobs' : 'Show More Jobs') }
                     </button>
                 
    
