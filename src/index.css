@@ -15,6 +15,18 @@
     .nav-layout{
         @apply grid grid-cols-8 gap-4 p-4 bg-indigo-700 border-y-2 
     }
+
+    .addJobForm {
+        @apply w-2/5 p-10 text-center mx-auto bg-indigo-100 rounded-md
+    }
+
+    .addJobLabel {
+        @apply float-left pb-2 font-bold
+    }
+
+    .addJobInput{
+        @apply w-full rounded-md p-2 
+    }
 }
 
 /* utility class, one class name to one style */
@@ -27,4 +39,5 @@
     .wen{
         text-indent: 4px;
     }
+
 }
