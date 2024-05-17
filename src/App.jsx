@@ -9,8 +9,6 @@ import MainLayOut from './layouts/mainLayOut';
 import JobsPage from './pages/jobsPage';
 import AddJob from './pages/addJobPage';
 import Contact from './pages/contactPage';
-import BrowseJobsPage from './pages/browseJobsPage';
-import PostJobs from './pages/postJobsPage';
 import Error404Page from './pages/404Page';
 import SingleJobPage, { dataLoader } from './pages/singleJobPage';
 
@@ -28,8 +26,6 @@ const router = createBrowserRouter(
       <Route path='/jobs/:id' element={<SingleJobPage />} loader={dataLoader} />
       <Route path='/add-job' element={ <AddJob />}/>
       <Route path='/contact' element={ <Contact />}/>
-      <Route path='/browse-jobs' element={ <BrowseJobsPage />}/>
-      <Route path='/post-jobs' element={ <PostJobs />}/>
       <Route path='*' element={ <Error404Page />}/>
     </Route>
   )

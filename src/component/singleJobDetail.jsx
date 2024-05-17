@@ -10,7 +10,7 @@ const SingleJobDetail = ({ job }) => {
       <Link to='/jobs' className='text-indigo-500 mx-10 font-bold'>
         {'<-- '}Go Back
       </Link>
-      <div className='p-6 flex flex-row gap-5'>
+      <div className='px-6 flex flex-row gap-5'>
         
         <div className='basis-2/3 p-4 '>
           <div className='shadow-lg p-4 bg-indigo-50 rounded-lg'>
@@ -46,10 +46,10 @@ const SingleJobDetail = ({ job }) => {
           
           <div className='shadow-lg rounded-md p-4 my-6 bg-indigo-50'>
             <p className='text-xl font-bold pb-4'>Manage Job</p>
-            <Link className='bg-indigo-500 w-fit px-2 py-1 rounded-md text-white my-4' to={`/jobs/edit/${job.id}`}>
+            <Link className='bg-indigo-500 px-2 py-1 rounded-md text-white my-4' to={`/jobs/edit/${job.id}`}>
               Edit Job
             </Link>
-            <Link className='bg-red-500 w-fit px-2 py-1 rounded-md text-white my-4 mx-6' to={`/jobs/delete/${job.id}`}>
+            <Link className='bg-red-500 px-2 py-1 rounded-md text-white my-4 mx-6' to={`/jobs/delete/${job.id}`}>
               Delete Job
             </Link>
           </div>

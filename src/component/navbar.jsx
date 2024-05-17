@@ -7,7 +7,7 @@ const Navbar = () => {
   const changeActivePageColor = ({ isActive })=> isActive ? 'nav-active-links' : 'nav-links';
 
   return (
-    <nav>
+    <nav className='mb-4'>
       <div className='nav-layout'>
         <div className='col-span-4 mx-8 mt-3 flex'>
           <img src={ logo } alt='logo' className='object-contain' width={65} height={55}/>
