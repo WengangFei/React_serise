@@ -44,7 +44,6 @@ const AddJob = ({ addJobSubmit }) => {
 //         },[watch])
         
 
-
   return (
 
       <form onSubmit={ handleSubmit((data)=>{ 
@@ -53,7 +52,7 @@ const AddJob = ({ addJobSubmit }) => {
         return navigate('/jobs')
 
         })} className='addJobForm'>
-        <h1 className='text-xl font-bold'>Add a Job</h1>
+        <h1 className='text-xl font-bold pb-10  '>Add a Job</h1>
 
         <p className='addJobLabel'>Job Type:</p><br />
         <select {...register("type")} className='addJobInput'>
@@ -76,7 +75,7 @@ const AddJob = ({ addJobSubmit }) => {
           placeholder= 'eg: Front-End Developer'
           type='text'
         />
-        <p className='text-sm text-red-500 float-start'>{ errors.jobName?.message}</p><br /><br />
+        <p className='text-sm text-red-500 float-start'>{ errors.title?.message}</p><br /><br />
         
         <p className='addJobLabel'>Job Description:</p><br />    
         <textarea 
@@ -86,7 +85,7 @@ const AddJob = ({ addJobSubmit }) => {
           className='addJobInput border-2'
           placeholder='This job is ......'
         />
-        <p className='text-sm text-red-500 float-start'>{ errors.jobDescription?.message}</p><br /><br />
+        <p className='text-sm text-red-500 float-start'>{ errors.description?.message}</p><br /><br />
 
         <p className='addJobLabel'>Salary:</p><br />
         <select {...register("salary")} className='addJobInput'>
@@ -108,7 +107,7 @@ const AddJob = ({ addJobSubmit }) => {
           placeholder='Company Location'
           type='text'
         />
-        <p className='text-sm text-red-500 float-start'>{ errors.jobLocation?.message}</p><br /><br />
+        <p className='text-sm text-red-500 float-start'>{ errors.location?.message}</p><br /><br />
 
         <p className='addJobLabel text-indigo-500 text-xl'>Company Information:</p><br /><br />
 
@@ -121,7 +120,7 @@ const AddJob = ({ addJobSubmit }) => {
           placeholder='Company Name'
           type='text'
         />
-        <p className='text-sm text-red-500 float-start'>{ errors.companyName?.message}</p><br /><br />
+        <p className='text-sm text-red-500 float-start'>{ errors.company?.name.message}</p><br /><br />
 
         <p className='addJobLabel'>Company Description:</p><br />
         <textarea 
@@ -132,7 +131,7 @@ const AddJob = ({ addJobSubmit }) => {
           placeholder='This company established in ......'
           type='text'
         />
-        <p className='text-sm text-red-500 float-start'>{ errors.companyDescription?.message}</p><br /><br />
+        <p className='text-sm text-red-500 float-start'>{ errors.company?.description.message}</p><br /><br />
 
         <p className='addJobLabel'>Company Email:</p><br />
         <input 
@@ -143,7 +142,7 @@ const AddJob = ({ addJobSubmit }) => {
           placeholder='eg: name@gmail.com'
           type='email'
         />
-        <p className='text-sm text-red-500 float-start'>{ errors.companyEmail?.message}</p><br /><br />
+        <p className='text-sm text-red-500 float-start'>{ errors.company?.contactEmail.message}</p><br /><br />
 
         <p className='addJobLabel'>Company Phone:</p><br />
         <input 
@@ -154,7 +153,7 @@ const AddJob = ({ addJobSubmit }) => {
           placeholder='eg: 555-555555'
           type='text'
         />
-        <p className='text-sm text-red-500 float-start'>{ errors.companyPhone?.message}</p><br /><br />
+        <p className='text-sm text-red-500 float-start'>{ errors.company?.contactPhone.message}</p><br /><br />
       
 
 

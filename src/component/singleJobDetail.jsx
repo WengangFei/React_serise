@@ -47,7 +47,7 @@ const SingleJobDetail = ({ job,deleteJob }) => {
           
           <div className='shadow-lg rounded-md p-4 my-6 bg-indigo-50'>
             <p className='text-xl font-bold pb-4'>Manage Job</p>
-            <Link className='bg-indigo-500 px-2 py-2 rounded-md text-white my-4' to={`/edit-job/${job.id}`}>
+            <Link className='bg-indigo-500 px-2 py-1.5 rounded-md text-white my-4' to={`/edit-job/${job.id}`}>
               Edit Job
             </Link>
             <button className='bg-red-500 px-2 py-1 rounded-md text-white my-4 mx-6' 

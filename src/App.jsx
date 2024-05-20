@@ -40,6 +40,21 @@ const App = () => {
     return
   }
 
+  //edit job
+
+  const editJob = async(formData)=>{
+
+    const resp = await fetch(`/api/jobs/${formData.id}`,{
+      method:'PUT',
+      headers:{
+        'Content-Type': 'application/JobsPage'
+      },
+      body: JSON.stringify(formData)
+    })
+   
+    return 
+  }
+
 
 
 
@@ -56,7 +71,7 @@ const App = () => {
         <Route path='/jobs/:id' element={<SingleJobPage deleteJob={deleteJob}/>} loader={dataLoader} />
         <Route path='/add-job' element={ <AddJob addJobSubmit={addJobSubmit}/>}/>
         <Route path='/contact' element={ <Contact />}/>
-        <Route path='/edit-job/:id' element={<EditJob loader={dataLoader} />} />
+        <Route path='/edit-job/:id' element={<EditJob  editJob={ editJob }/>} loader={dataLoader} />
         <Route path='*' element={ <Error404Page />}/>
       </Route>
     )

@@ -6,7 +6,6 @@ import SingleJobDetail from "../component/singleJobDetail";
 const SingleJobPage = ({ deleteJob }) => {
     // const { id } = useParams();
     const job = useLoaderData();
-   
 
   return (
 
@@ -18,8 +17,9 @@ const SingleJobPage = ({ deleteJob }) => {
 }
 
 //method of use useLoader from react-router-dom to fetch data
-const dataLoader = async({ params })=>{
-  
+const dataLoader = async({params})=>{
+    
+    // {request: Request, params: {…}, context: undefined}
     try{
         const receiveData = await fetch(`/api/jobs/${params.id}`);
         const rawData = await receiveData.json();
@@ -27,7 +27,6 @@ const dataLoader = async({ params })=>{
     }catch(error){
         console.log(error)
     }
-     
 }
 
 
