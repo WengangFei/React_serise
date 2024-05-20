@@ -1,44 +1,62 @@
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+// import { useEffect } from 'react';
 
-// you can use React.forwardRef to pass the ref too
-const Select = React.forwardRef(({ onChange, onBlur, name, label }, ref) => (
-  <>
-    <label>{label}</label>
-    <select name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
-      <option value="20">20</option>
-      <option value="30">30</option>
-    </select>
-  </>
-));
 
-const AddJob = () => {
 
-  const{ register,
-         handleSubmit, 
-         formState:{ errors},
+
+
+const AddJob = ({ addJobSubmit }) => {
+
+  const navigate = useNavigate();
+
+  const{ 
+        register,
+        handleSubmit, 
+        formState:{ errors},
+        //  watch
         } = useForm({
           defaultValues:{
-            companyDescription: "",
-            companyEmail: "",
-            companyName: "",
-            companyPhone: "",
-            jobDescription: "",
-            jobLocation: "",
-            jobName: "",
-            jobType: "fullTime",
+            title: "",
+            type: "fullTime",
+            description: "",
+            location: "",
             salary: "under-50K",
+            company:{
+              name:'',
+              description:'',
+              contactEmail:'',
+              contactPhone: "",
+            }
           }
         });
 
-        console.log(errors)
+//         useEffect(()=>{
+//           const sub = watch((data)=>{
+//             console.log(data)
+//           })
+
+//           return ()=>{
+//             console.log('return')
+//             sub.unsubscribe();
+//           }
+//         },[watch])
+        
+
 
   return (
 
-      <form onSubmit={ handleSubmit((data)=>{ console.log(data) })} className='addJobForm'>
+      <form onSubmit={ handleSubmit((data)=>{ 
+        addJobSubmit(data);
+        toast.success('Job added successfully!')
+        return navigate('/jobs')
+
+        })} className='addJobForm'>
         <h1 className='text-xl font-bold'>Add a Job</h1>
 
         <p className='addJobLabel'>Job Type:</p><br />
-        <select {...register("jobType")} className='addJobInput'>
+        <select {...register("type")} className='addJobInput'>
           <option value="fullTime">Full-Time</option>
           <option value="partTime">Part-Time</option>
           <option value="freelance">Freelance</option>
@@ -47,12 +65,13 @@ const AddJob = () => {
         <p className='addJobLabel'>Job Listing Name:</p><br />
         <input 
           className='addJobInput'
-          {...register('jobName',{
+          {...register('title',{
             required: 'This field is require.',
             minLength:{
               value: 5,
               message: 'Can not be less than 5 letters.'
-            }
+            },
+            // validate:(value,formValue)=>console.log(value,formValue)
           })}
           placeholder= 'eg: Front-End Developer'
           type='text'
@@ -61,7 +80,7 @@ const AddJob = () => {
         
         <p className='addJobLabel'>Job Description:</p><br />    
         <textarea 
-          {...register("jobDescription",{
+          {...register("description",{
             required: 'This field is require.'
           })} 
           className='addJobInput border-2'
@@ -79,7 +98,7 @@ const AddJob = () => {
         <p className='addJobLabel'>Job Location:</p><br />
         <input 
           className='addJobInput'
-          {...register('jobLocation',{
+          {...register('location',{
             required:'This field is required.',
             minLength:{
               value: 5,
@@ -96,7 +115,7 @@ const AddJob = () => {
         <p className='addJobLabel'>Company Name:</p><br />
         <input 
           className='addJobInput'
-          {...register('companyName',{
+          {...register('company.name',{
             required:'Company name is required.'
           })}
           placeholder='Company Name'
@@ -106,7 +125,7 @@ const AddJob = () => {
 
         <p className='addJobLabel'>Company Description:</p><br />
         <textarea 
-          {...register("companyDescription",{
+          {...register("company.description",{
             required:'Company description is required.'
           })} 
           className='border-2 addJobInput'
@@ -118,7 +137,7 @@ const AddJob = () => {
         <p className='addJobLabel'>Company Email:</p><br />
         <input 
           className='addJobInput'
-          {...register('companyEmail',{
+          {...register('company.contactEmail',{
             required:'Company email is required.'
           })}
           placeholder='eg: name@gmail.com'
@@ -129,14 +148,18 @@ const AddJob = () => {
         <p className='addJobLabel'>Company Phone:</p><br />
         <input 
           className='addJobInput'
-          {...register('companyPhone',{
+          {...register('company.contactPhone',{
             required: 'Company phone number is required.'
           })}
           placeholder='eg: 555-555555'
           type='text'
         />
         <p className='text-sm text-red-500 float-start'>{ errors.companyPhone?.message}</p><br /><br />
-        
+      
+
+
+
+
         <button type='submit' className='bg-indigo-500 text-white rounded-md py-1 px-2'>
           Submit
         </button>

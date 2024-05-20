@@ -11,28 +11,59 @@ import AddJob from './pages/addJobPage';
 import Contact from './pages/contactPage';
 import Error404Page from './pages/404Page';
 import SingleJobPage, { dataLoader } from './pages/singleJobPage';
+import EditJob from './component/editJob';
 
-
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    // parent layout page
-    <Route path='/' element={<MainLayOut />}>
-      {/* index indicate the home page  */}
-      <Route index element={<HomePage />}/>
-      <Route path='/jobs' element={<JobsPage />}/>
-      {/* : is indicating the variable follow it is a dynamic variable */}
-      {/* loader is to call the loader function that define and fetch the data in the element component page */}
-      <Route path='/jobs/:id' element={<SingleJobPage />} loader={dataLoader} />
-      <Route path='/add-job' element={ <AddJob />}/>
-      <Route path='/contact' element={ <Contact />}/>
-      <Route path='*' element={ <Error404Page />}/>
-    </Route>
-  )
-);
 
 
 const App = () => {
+
+  //this function send the addJob page form all inputs to the backend.
+  const addJobSubmit = async (formData)=>{
+
+    const resp = await fetch('/api/jobs',{
+      method:'POST',
+      headers:{
+        'Content-Type': 'application/JobsPage'
+      },
+      body: JSON.stringify(formData)
+    })
+   
+    return 
+  }
+
+  //delete a job
+  const deleteJob = async(id)=>{
+    const resp = await fetch(`/api/jobs/${id}`,{
+      method:'DELETE',
+    })
+   
+    return
+  }
+
+
+
+
+  const router = createBrowserRouter(
+
+    createRoutesFromElements(
+      // parent layout page
+      <Route path='/' element={<MainLayOut />}>
+        {/* index indicate the home page  */}
+        <Route index element={<HomePage />}/>
+        <Route path='/jobs' element={<JobsPage />}/>
+        {/* : is indicating the variable follow it is a dynamic variable */}
+        {/* loader is to call the loader function that define in singleJobPage and fetch the data */}
+        <Route path='/jobs/:id' element={<SingleJobPage deleteJob={deleteJob}/>} loader={dataLoader} />
+        <Route path='/add-job' element={ <AddJob addJobSubmit={addJobSubmit}/>}/>
+        <Route path='/contact' element={ <Contact />}/>
+        <Route path='/edit-job/:id' element={<EditJob loader={dataLoader} />} />
+        <Route path='*' element={ <Error404Page />}/>
+      </Route>
+    )
+  );
+
+
+
 
   return <RouterProvider router={router}/>
 

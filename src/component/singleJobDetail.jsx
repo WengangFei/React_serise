@@ -1,10 +1,11 @@
 import { FaMapMarker } from 'react-icons/fa';
 import { MdEmail } from "react-icons/md";
 import { FaPhoneSquareAlt } from "react-icons/fa";
-import { Link} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-const SingleJobDetail = ({ job }) => {
-  
+const SingleJobDetail = ({ job,deleteJob }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Link to='/jobs' className='text-indigo-500 mx-10 font-bold'>
@@ -46,16 +47,24 @@ const SingleJobDetail = ({ job }) => {
           
           <div className='shadow-lg rounded-md p-4 my-6 bg-indigo-50'>
             <p className='text-xl font-bold pb-4'>Manage Job</p>
-            <Link className='bg-indigo-500 px-2 py-1 rounded-md text-white my-4' to={`/jobs/edit/${job.id}`}>
+            <Link className='bg-indigo-500 px-2 py-2 rounded-md text-white my-4' to={`/edit-job/${job.id}`}>
               Edit Job
             </Link>
-            <Link className='bg-red-500 px-2 py-1 rounded-md text-white my-4 mx-6' to={`/jobs/delete/${job.id}`}>
-              Delete Job
-            </Link>
-          </div>
+            <button className='bg-red-500 px-2 py-1 rounded-md text-white my-4 mx-6' 
+              onClick={()=>{
+                  const confirm = window.confirm('Are you sure yo want to delete the job?')
+                  if(!confirm) return
 
+                  deleteJob(job.id);
+                  toast('Job delete successful!');
+                  navigate('/jobs');
+                }
+              }
+            >
+              Delete Job
+            </button>
+          </div>
         </div>
-      
       </div>
     </>
   )

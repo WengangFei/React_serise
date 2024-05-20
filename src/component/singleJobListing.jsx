@@ -7,12 +7,16 @@ const SingleJobListing = ({ job }) => {
 //show more job descriptions
 const[showSingleJobDescription,setShoSingleJobDescription] = useState(job.description.slice(0,120));
 const[flag,setFlag] = useState(false);
+
+
+
   return (
     <>
         <p>{ job.type }</p>
         <h3 className='text-xl font-bold my-3'>{ job.title }</h3>
         <p>{ showSingleJobDescription }
             <button className='text-indigo-500' onClick={()=>{
+                
                 setFlag(prev=>!prev);
                 !flag ? 
                 setShoSingleJobDescription(job.description):
